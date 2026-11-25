@@ -1,4 +1,5 @@
 import turtle
+import json
 
 class CoordinateTranslator:
     """Translates inputted x coordinate to selected node (chunk0 = 0, chunk1 = 1, chunk2 = 2, region0 = 3, region1 = 4), which outputs a usable coordinate tupple."""
@@ -57,3 +58,16 @@ class CoordinateTranslator:
             print(f"Detect low or high either reached equal or reached unknown (possible issue): Delta = {DeltaNode}, Current = {CurrentNode}, ResultNode = {ResultNode}")
 
         return (rx, ry)
+
+class FileInterpetter:
+    """Read/Write to file types such as Json or even to sql DBs (if added)."""
+    def LoadJsonFile(self, path:str):
+        with open(path, "r") as file:
+            data = json.load(file)
+
+        return data
+
+    def WriteJsonFile(self, path:str, data:object):
+        with open(path, "w") as file:
+            json.dump(data, file)
+
